@@ -1,0 +1,85 @@
+<null>;<null>;
+VRR-Bartickets;EinzelTicket Erwachsene;101
+VRR-Bartickets;EinzelTicket Kind;102
+VRR-Bartickets;4erTicket Erwachsene;103
+VRR-Bartickets;4erTicket Kind;104
+VRR-Bartickets;10erTicket;105
+VRR-Bartickets;TagesTicket 1-5 Personen;106
+VRR-Bartickets;Happy-Hour-Ticket;107
+VRR-Bartickets;4-StundenTicket;108
+VRR-Bartickets;24-StundenTicket;109
+VRR-Bartickets;48-StundenTicket;110
+T1000/2000, 7 Tage-Ticket;Ticket1000;201
+T1000/2000, 7 Tage-Ticket;Ticket1000 Abo (Chipkarte);202
+T1000/2000, 7 Tage-Ticket;Ticket1000 9-Uhr;203
+T1000/2000, 7 Tage-Ticket;Ticket1000 9-Uhr Abo (Chipkarte);204
+T1000/2000, 7 Tage-Ticket;Ticket2000;205
+T1000/2000, 7 Tage-Ticket;Ticket2000 Abo (Chipkarte);206
+T1000/2000, 7 Tage-Ticket;Ticket2000 9-Uhr;207
+T1000/2000, 7 Tage-Ticket;Ticket2000 9-Uhr Abo (Chipkarte);208
+T1000/2000, 7 Tage-Ticket;7-Tage-Ticket / 7-Tage-Karte;209
+Sonstige VRR-Tickets;YoungTicket/YoungTicketPlus;301
+Sonstige VRR-Tickets;FirmenTicket;302
+Sonstige VRR-Tickets;SchokoTicket;303
+Sonstige VRR-Tickets;MeinTicket/SozialTicket;304
+Sonstige VRR-Tickets;BärenTicket;305
+Sonstige VRR-Tickets;KombiTicket;306
+Semestertickets;Wuppertal, Bergische Universität Wuppertal;401
+Semestertickets;Wuppertal, Hochschule für Musik und Tanz;402
+Semestertickets;Wuppertal, Kirchliche HochschuleWuppertal/Bethel;403
+Semestertickets;Sonstiges Semesterticket VRR;498
+Semestertickets;Sonstiges Semesterticket außerhalb VRR;499
+NRW-Tarif;SchöneReiseTicket NRW Einzelfahrt ;501
+NRW-Tarif;SchöneReiseTicket NRW Einzelfahrt Kind;502
+NRW-Tarif;SchöneReiseTicket NRW Gruppe Einzelfahrt;503
+NRW-Tarif;SchöneReiseTicket NRW Hin&Rück;504
+NRW-Tarif;SchöneReiseTicket NRW Hin&Rück Kind;505
+NRW-Tarif;SchöneReiseTicket NRW Gruppe Hin&Rück;506
+NRW-Tarif;AnschlussTicket NRW Einzelfahrt;507
+NRW-Tarif;AnschlussTicket NRW Einzelfahrt Kind;508
+NRW-Tarif;AnschlussTicket NRW Hin&Rück;509
+NRW-Tarif;AnschlussTicket NRW Hin&Rück Kind;510
+NRW-Tarif;SchöneWocheTicket NRW;511
+NRW-Tarif;SchönerMonatTicket NRW;512
+NRW-Tarif;SchönerMonatTicket NRW Abo;513
+NRW-Tarif;SchönerMonatTicket NRW Azubi;514
+NRW-Tarif;SchönerMonatTicket NRW Azubi Abo;515
+NRW-Tarif;SchöneFahrtTicket NRW Erw.;516
+NRW-Tarif;SchöneFahrtTicket NRW Kind;517
+NRW-Tarif;SchönerTagTicket NRW Single;518
+NRW-Tarif;SchönerTagTicket NRW 5 Personen;519
+NRW-Tarif;SchönesJahrTicket NRW;520
+NRW-Tarif;SchönesJahrTicket NRW Abo;521
+NRW-Tarif;Schöne60Ticket NRW Abo;522
+NRW-Tarif;EinfachWeiterTicket Erw.;523
+NRW-Tarif;EinfachWeiterTicket Kind;524
+NRW-Tarif;eezy NRW;525
+NRW-Tarif;Sonstiges NRW-Ticket;599
+DB-Tarif;Quer-durchs-Land-Ticket;601
+DB-Tarif;Flexpreis (normal, Kind, H+R, BC25, BC50);602
+DB-Tarif;Sparpreis (normal, H+R, BC25, BC50, Aktion);603
+DB-Tarif;Sonstiges DB-Ticket;699
+Sonstige;Schwerbehinderte und Begleitpersonen;701
+Sonstige;Mitarbeiter des VU;702
+Sonstige;Sonderfahrausweise (Dienstfahrausweise von Verbundgesellschaften, Gästetickets);703
+Sonstige;Polizeibeamte im Dienst;704
+Sonstige;sonstige Freifahrer;705
+Sonstige;bekennende Schwarzfahrer;706
+Sonstige;Erheberausweis/Kontrollausweis;707
+Sonstige;Ticket nicht erkennbar;799
+VRS-Tarif;EinzelTicket;801
+VRS-Tarif;4erTicket;802
+VRS-Tarif;24StundenTicket;803
+VRS-Tarif;10TageFlexTicket;804
+VRS-Tarif;AnchlussTicket;805
+VRS-Tarif;JobTicket/JobTicketLight;806
+VRS-Tarif;WochenTicket;807
+VRS-Tarif;MonatsTicket;808
+VRS-Tarif;Formel9Ticket;809
+VRS-Tarif;Aktiv60Ticket;810
+VRS-Tarif;PrimaTicket;811
+VRS-Tarif;SchülerTicket;812
+VRS-Tarif;AzubiTicket;813
+VRS-Tarif;StarterTicket;814
+VRS-Tarif;DualTicket;815
+VRS-Tarif;Sonstiges VRS-Ticket;899
