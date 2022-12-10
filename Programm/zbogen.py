@@ -457,7 +457,7 @@ class Ui_MainWindow(object):
         self.foot.addWidget(self.textUnregelmaessigkeit)
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.foot.addItem(spacerItem)
-        self.pushButton = QtWidgets.QPushButton(self.verticalLayoutWidget_2, clicked = lambda: self.pruef())#Button Einstellungen
+        self.pushButton = QtWidgets.QPushButton(self.verticalLayoutWidget_2, clicked = lambda: self.pruef())
         self.pushButton.setObjectName("pushButton")
         self.foot.addWidget(self.pushButton)
         self.main.addLayout(self.foot)
@@ -487,7 +487,7 @@ class Ui_MainWindow(object):
             
     def pruef(self):
         if self.pushButton.text() != "<None>" and len(self.lineEdit_Seriennummer.text()) != 0:
-            self.statusbar.showMessage("Bitte warten. Prüfung und Speicherung läuft.")
+            self.statusbar.showMessage("Bitte warten. Speicherung läuft. Prüfung parameter nicht gefunden.")
             self.get_infos()
         else:
             self.statusbar.showMessage("Bitte einen Linienkurs wählen und die Seriennummer vervollständigen.")
@@ -570,10 +570,51 @@ class Ui_MainWindow(object):
         self.b25.setEnabled(False)
         self.textUnregelmaessigkeit.setEnabled(False)
         self.comboBox_Linie.setEnabled(False)
-        self.lineEdit_IV_Nummer.setEnabled(False)
+        self.lineEdit_IV_Nummer.setEnabled(False)   
         
-    def get_infos(self):
+    def econ_verarbeitung_mat(self, input):
+        head = ["Seriennummer", "IV_Nr", "IST-Zeit Abfahrtsort", "IST-Zeit Ankunftsort", "Besetzung Vohw. Schweb.", "Kodiernummer Vohw. Schweb.", 
+                "Einsteiger Bruch", "Besetzung Bruch", "Kodiernummer Bruch", "Einsteiger Hammerstein", "Besetzung Hammerstein", "Kodiernummer Hammerstein", "Einsteiger Sonnborner Straße", "Besetzung Sonnborner Straße", "Kodiernummer Sonnborner Straße", "Einsteiger Zoo/Stadion", "Besetzung Zoo/Stadion", "Kodiernummer Zoo/Stadion", "Einsteiger Varresbecker Straße", "Besetzung Varresbecker Straße", "Kodiernummer Varresbecker Straße", "Einsteiger Westende", "Besetzung Westende", "Kodiernummer Westende", "Einsteiger Pestalozzistraße", "Besetzung Pestalozzistraße", "Kodiernummer Pestalozzistraße", "Einsteiger Robert-Daum-Platz","Besetzung Robert-Daum-Platz", "Kodiernummer Robert-Daum-Platz", "Einsteiger Ohligsmühle/Stadthalle", "Besetzung Ohligsmühle/Stadthalle", "Kodiernummer Ohligsmühle/Stadthalle", "Einsteiger Hauptbahnhof", "Besetzung Hauptbahnhof", "Kodiernummer Hauptbahnhof", "Einsteiger Kluse", "Besetzung Kluse", "Kodiernummer Kluse", "Einsteiger Landgericht", "Besetzung Landgericht", "Kodiernummer Landgericht", "Einsteiger Völklinger Straße", "Besetzung Völklinger Straße", "Kodiernummer Völklinger Straße", "Einsteiger Loher Brücke", "Besetzung Loher Brücke", "Kodiernummer Loher Brücke", "Einsteiger Adlerbrücke", "Besetzung Adlerbrücke", "Kodiernummer Adlerbrücke", "Einsteiger Alter Markt", "Besetzung Alter Markt", "Kodiernummer Alter Markt", "Einsteiger Werther Brücke", "Besetzung Werther Brücke", "Kodiernummer Werther Brücke", "Einsteiger Wupperfeld", 
+                "Besetzung Wupperfeld", "Kodiernummer Wupperfeld", "Erhebungsausfall", "Unregelmäßigkeiten"]
+        # head = [0"Linie", 1"Seriennr.", 2"IV-Nummer", 3"Haltestelle", 4"Uhrzeit", 5"Einsteiger", 6"Besetzung", 7"Unregelmäßigkeit"]
+        data = [head]
+        for e in input:
+            data.append(e[1], e[2], e[4], "")
+        return data
+    
+    def econ_verarbeitung_line(self, input):
+        head = ["Seriennummer", "IV_Nr", "IST-Zeit Abfahrtsort", "IST-Zeit Ankunftsort", "Besetzung Vohw. Schweb.", "Kodiernummer Vohw. Schweb.", 
+                "Einsteiger Bruch", "Besetzung Bruch", "Kodiernummer Bruch", "Einsteiger Hammerstein", "Besetzung Hammerstein", "Kodiernummer Hammerstein", "Einsteiger Sonnborner Straße", "Besetzung Sonnborner Straße", "Kodiernummer Sonnborner Straße", "Einsteiger Zoo/Stadion", "Besetzung Zoo/Stadion", "Kodiernummer Zoo/Stadion", "Einsteiger Varresbecker Straße", "Besetzung Varresbecker Straße", "Kodiernummer Varresbecker Straße", "Einsteiger Westende", "Besetzung Westende", "Kodiernummer Westende", "Einsteiger Pestalozzistraße", "Besetzung Pestalozzistraße", "Kodiernummer Pestalozzistraße", "Einsteiger Robert-Daum-Platz","Besetzung Robert-Daum-Platz", "Kodiernummer Robert-Daum-Platz", "Einsteiger Ohligsmühle/Stadthalle", "Besetzung Ohligsmühle/Stadthalle", "Kodiernummer Ohligsmühle/Stadthalle", "Einsteiger Hauptbahnhof", "Besetzung Hauptbahnhof", "Kodiernummer Hauptbahnhof", "Einsteiger Kluse", "Besetzung Kluse", "Kodiernummer Kluse", "Einsteiger Landgericht", "Besetzung Landgericht", "Kodiernummer Landgericht", "Einsteiger Völklinger Straße", "Besetzung Völklinger Straße", "Kodiernummer Völklinger Straße", "Einsteiger Loher Brücke", "Besetzung Loher Brücke", "Kodiernummer Loher Brücke", "Einsteiger Adlerbrücke", "Besetzung Adlerbrücke", "Kodiernummer Adlerbrücke", "Einsteiger Alter Markt", "Besetzung Alter Markt", "Kodiernummer Alter Markt", "Einsteiger Werther Brücke", "Besetzung Werther Brücke", "Kodiernummer Werther Brücke", "Einsteiger Wupperfeld", 
+                "Besetzung Wupperfeld", "Kodiernummer Wupperfeld", "Erhebungsausfall", "Unregelmäßigkeiten"]
+        # head = [0"Linie", 1"Seriennr.", 2"IV-Nummer", 3"Haltestelle", 4"Uhrzeit", 5"Einsteiger", 6"Besetzung", 7"Unregelmäßigkeit"]
+        fist = input.pop(0)
+        last = input.pop(-1)
+        data = [head, fist[1], fist[2], fist[4], last[4], fist[6], fist[3]]
+        for e in input:
+            data.append(e[5], e[6], e[3])
+        data.append("Nein", last[7])
+        return data
+    
+    def save_it(self):
         self.enable_all()
+        erg = self.get_infos()
+        dat = self.econ_verarbeitung_line(input=erg)
+        head = dat.pop(0)
+        seriennummer = self.lineEdit_Seriennummer.text()
+        try:
+            pd.DataFrame(dat).to_excel(self.path_to() + r"/ergebnisse/zaehlung_"+seriennummer+".xlsx", header=head, index=False)
+        except:
+            self.statusbar.showMessage("Es kann nicht Gespeichert werden. Bitte noch einmal versuchen.")
+            self.pushButton.setText("Nochmal")
+            self.pushButton.setEnabled(True)
+            self.lineEdit_Seriennummer.setEnabled(True)
+        else:
+            self.statusbar.showMessage("Gespeichert!")
+            self.lineEdit_Seriennummer.setEnabled(False)
+            self.pushButton.setText("Beenden")
+            self.pushButton.setEnabled(False)
+    
+    def get_infos(self):
         line = self.comboBox_Linie.currentText()
         ivnummer = self.lineEdit_IV_Nummer.text()
         seriennummer = self.lineEdit_Seriennummer.text()
@@ -606,13 +647,12 @@ class Ui_MainWindow(object):
             (str(self.t24.time()).strip('PyQt5.QtCore.QTime(').strip(')'), self.e24.value(), self.b24.value()),
             (str(self.t25.time()).strip('PyQt5.QtCore.QTime(').strip(')'), self.e25.value(), self.b25.value())]
         # Haltestellen laden
-        
         path = self.path_to() + r"/linienplan/"+line+".csv"
         datei = open(path, 'r', encoding='UTF-8')
         datei = datei.readlines()
         # Zusammenführen
         erg = []
-        head = ["Linie", "Seriennr.", "IV-Nummer", "Haltestelle", "Uhrzeit", "Einsteiger", "Besetzung", "Unregelmäßigkeit"]
+        # head = ["Linie", "Seriennr.", "IV-Nummer", "Haltestelle", "Uhrzeit", "Einsteiger", "Besetzung", "Unregelmäßigkeit"]
         for idx, h in enumerate(datei):
             h = h.split(';')
             h = h[1].strip("\n").strip(";")
@@ -625,19 +665,8 @@ class Ui_MainWindow(object):
             time = t[0] + ":" + t[1]
             erg.append((line, seriennummer, ivnummer, h, time.strip(' '), eintrag[idx][1], eintrag[idx][2], unregel))
             print(erg)
-        #Speicherung 
-        try:
-            pd.DataFrame(erg).to_excel(self.path_to() + r"/ergebnisse/zaehlung_"+seriennummer+".xlsx", header=head, index=False)
-        except:
-            self.statusbar.showMessage("Es kann nicht Gespeichert werden. Bitte noch einmal versuchen.")
-            self.pushButton.setText("Nochmal")
-            self.pushButton.setEnabled(True)
-            self.lineEdit_Seriennummer.setEnabled(True)
-        else:
-            self.statusbar.showMessage("Gespeichert!")
-            self.lineEdit_Seriennummer.setEnabled(False)
-            self.pushButton.setText("Beenden")
-            self.pushButton.setEnabled(False)
+        return erg
+        
             
     def notwendigebeschriftung(self, MainWindow):
         MainWindow.setWindowTitle("MainWindow")
