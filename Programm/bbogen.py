@@ -505,7 +505,7 @@ class Ui_MainWindow(object):
         self.laufnummer.setValue(self.laufnummer.value()+1)
         self.comboBox_Erhebunsabschnitt.setCurrentIndex(0)
         self.fahrausweisart.setCurrentIndex(0)
-        self.verkaufendesvu.setCurrentIndex(0)
+        self.verkaufendesvu.setCurrentIndex(1)
         self.preis.setValue(0.00)
         self.preisstufe.setCurrentIndex(0)
         self.spinBox_bis5.setValue(0)
@@ -582,7 +582,7 @@ class Ui_MainWindow(object):
             self.status.currentData(),                      #23
             self.plainTextEdit.toPlainText())               #24
         return erg
-        
+
     def pruef(self):
         self.statusbar.showMessage("Prüfung")
         erg = self.get_data()
@@ -601,6 +601,8 @@ class Ui_MainWindow(object):
             self.statusbar.showMessage("Fehler: Ausstieg und Erhebungsabschnitt passen nicht zusammen fehlerhaft!")  
         elif self.ausstieg.currentIndex() < self.einstieg.currentIndex():
             self.statusbar.showMessage("Fehler: Ein- und Ausstieg sind fehlerhaft!")
+        elif self.fahrausweiskat.currentIndex() == 1 and erg[6] == 0:
+            self.statusbar.showMessage("Fehler: Der Ticketpreis ist zu niedrig!")
         elif erg[6] != 0 and erg[7] == "":
             self.statusbar.showMessage("Fehler: Die Preisstufe fehlt!")
         elif erg[14] in lauf and erg[15] == "":
@@ -611,6 +613,8 @@ class Ui_MainWindow(object):
             self.statusbar.showMessage("Fehler: Die Ausstiegshaltestelle bei Nachlauf 1 fehlt!")
         elif erg[20] in lauf and erg[21] == "":
             self.statusbar.showMessage("Fehler: Die Ausstiegshaltestelle bei Nachlauf 2 fehlt!")
+        elif erg[8] + erg[9] + erg[10] + erg[11] == 0 :
+            self.statusbar.showMessage("Fehler: Anzahl der Reisenden ist zu niedrig.")
         else:
             self.statusbar.showMessage("Prüfung: Kein Fehler gefunden")
         # Soll auch mit Fehlern weiter gehen.
