@@ -1,8 +1,8 @@
 # Digitalisierungsprogamm-OePNV-Befragung
  
-Das vorliegnde Programm soll den Digitalisierungsvorgang untrstützen und beschleuningen. <br>
-Im rahmen des Uni-Projekts der BUW wird eine Erhebung im Oeffentlichen Personen Nahverkehr durchgeführt. Da dies keine digaitale Erhebung ist, müssen anschließend alle Frageboegen codiert und im Tabellenschema abgetippt werden. <br>
-Dieses Programm soll den Schritt der Codierung und erfassung aufgreifen und als Ergebniss eine Tabelle für jede Erhebungsfahrt zurück geben. 
+Das vorliegende Programm soll den Digitalisierungsvorgang unterstützen und beschleunigen.
+Im Rahmen des Uni-Projekts der BUW wird eine Erhebung im Öffentlichen Personen Nahverkehr durchgeführt. Da dies keine digitale Erhebung ist, müssen anschließend alle Fragebögen codiert und im Tabellenschema abgetippt werden.
+Dieses Programm soll den Schritt der Codierung und Erfassung aufgreifen und als Ergebnis eine Tabelle für jede Erhebungsfahrt zurückgeben.
 
-#Voraussetzungen# <br>
-Python muss auf dem PC installiert sein. Es werden die **Module** *Pandas*, *OS*, *PyQt5* und *Sys* benötigt. Häufig muss nur Pandas installiert werden.
+<h2>Voraussetzungen</h2><br>
+Python muss auf dem PC installiert sein. Es werden die Module Pandas, OS, PyQt5 und Sys benötigt. Häufig fehlt das Modul "Pandas" installiert werden.
