@@ -1,0 +1,1 @@
+In diesem Ordner werden die Ergebnisse gespeichert. Ebenso befinden sich CSV-Dateien in dem Ordner. Nach Abschluss können diese gelöscht werden und die Excel-Dateien weiter verwendet werden.
