@@ -488,7 +488,7 @@ class Ui_MainWindow(object):
     def pruef(self):
         if self.pushButton.text() != "<None>" and len(self.lineEdit_Seriennummer.text()) != 0:
             self.statusbar.showMessage("Bitte warten. Speicherung läuft. Prüfung parameter nicht gefunden.")
-            self.get_infos()
+            self.save_it()
         else:
             self.statusbar.showMessage("Bitte einen Linienkurs wählen und die Seriennummer vervollständigen.")
         
@@ -597,12 +597,24 @@ class Ui_MainWindow(object):
     
     def save_it(self):
         self.enable_all()
-        erg = self.get_infos()
-        dat = self.econ_verarbeitung_line(input=erg)
-        head = dat.pop(0)
+        head_erg = self.get_infos()
+        print(head_erg)
+        # dat = pd.array(head_erg[0])
+        # head = pd.array(head_erg[1])
+        # print(dat)
+        # print(head)
+        # dat = self.econ_verarbeitung_line(input=erg)
+        # head = dat.pop(0)
         seriennummer = self.lineEdit_Seriennummer.text()
+        
+        
+        # pd.DataFrame(dat).reset_index().to_excel(self.path_to() + r"/ergebnisse/zaehlung_"+seriennummer+".xlsx", header=head, index=False)
         try:
-            pd.DataFrame(dat).to_excel(self.path_to() + r"/ergebnisse/zaehlung_"+seriennummer+".xlsx", header=head, index=False)
+        #     pd.DataFrame(dat).reset_index().to_excel(self.path_to() + r"/ergebnisse/zaehlung_"+seriennummer+".xlsx", header=head, index=False)
+            df = pd.DataFrame(head_erg)
+            writer = pd.ExcelWriter(self.path_to() + r"/ergebnisse/zaehlung_"+seriennummer+".xlsx", engine='xlsxwriter')
+            df.to_excel(writer, index=False)
+            writer.save()
         except:
             self.statusbar.showMessage("Es kann nicht Gespeichert werden. Bitte noch einmal versuchen.")
             self.pushButton.setText("Nochmal")
@@ -619,7 +631,6 @@ class Ui_MainWindow(object):
         ivnummer = self.lineEdit_IV_Nummer.text()
         seriennummer = self.lineEdit_Seriennummer.text()
         unregel = self.textUnregelmaessigkeit.toPlainText()
-        print(unregel)
         # Einträge laden
         eintrag = [(str(self.t01.time()).strip('PyQt5.QtCore.QTime(').strip(')'), self.e01.value(), self.b01.value()),
             (str(self.t02.time()).strip('PyQt5.QtCore.QTime(').strip(')'), self.e02.value(), self.b02.value()),
@@ -646,27 +657,74 @@ class Ui_MainWindow(object):
             (str(self.t23.time()).strip('PyQt5.QtCore.QTime(').strip(')'), self.e23.value(), self.b23.value()),
             (str(self.t24.time()).strip('PyQt5.QtCore.QTime(').strip(')'), self.e24.value(), self.b24.value()),
             (str(self.t25.time()).strip('PyQt5.QtCore.QTime(').strip(')'), self.e25.value(), self.b25.value())]
-        # Haltestellen laden
+        # Uhrzeit
+        for i in range(len(eintrag)):
+            print(eintrag[i])
+            t = eintrag[i][0].split(',')
+            hh = t[0].strip("'").strip(' ')
+            mm = t[1].strip("'").strip(' ')
+            t = [hh, mm]
+            try:
+                if int(t[0]) < 10:
+                    t[0] = '0' + t[0]
+            except:
+                t[0] = '99'
+            try:
+                if int(t[1]) < 10:
+                    t[1] = '0' + t[1]
+            except:
+                t[1] = '99'
+            t = t[0] + ":" + t[1]
+            t = t.strip(' ')
+            eintrag[i] = (t, eintrag[i][1], eintrag[i][2])
+        # Haltestellen laden    
         path = self.path_to() + r"/linienplan/"+line+".csv"
         datei = open(path, 'r', encoding='UTF-8')
         datei = datei.readlines()
         # Zusammenführen
+        head_erg = self.zusammen_econ(datei, eintrag, line, seriennummer, ivnummer, unregel)
+        return head_erg
+    
+    def zusammen_econ(self, datei, eintrag, line, seriennummer, ivnummer, unregel):
+        # head = ["Seriennummer", "IV_Nr", "IST-Zeit Abfahrtsort", "IST-Zeit Ankunftsort", "Besetzung Vohw. Schweb.", "Kodiernummer Vohw. Schweb.", 
+        #            "Einsteiger Bruch", "Besetzung Bruch", "Kodiernummer Bruch", "Einsteiger Hammerstein", "Besetzung Hammerstein", "Kodiernummer Hammerstein", "Einsteiger Sonnborner Straße", "Besetzung Sonnborner Straße", "Kodiernummer Sonnborner Straße", "Einsteiger Zoo/Stadion", "Besetzung Zoo/Stadion", "Kodiernummer Zoo/Stadion", "Einsteiger Varresbecker Straße", "Besetzung Varresbecker Straße", "Kodiernummer Varresbecker Straße", "Einsteiger Westende", "Besetzung Westende", "Kodiernummer Westende", "Einsteiger Pestalozzistraße", "Besetzung Pestalozzistraße", "Kodiernummer Pestalozzistraße", "Einsteiger Robert-Daum-Platz", "Besetzung Robert-Daum-Platz", "Kodiernummer Robert-Daum-Platz", "Einsteiger Ohligsmühle/Stadthalle", "Besetzung Ohligsmühle/Stadthalle", "Kodiernummer Ohligsmühle/Stadthalle", "Einsteiger Hauptbahnhof", "Besetzung Hauptbahnhof", "Kodiernummer Hauptbahnhof", "Einsteiger Kluse", "Besetzung Kluse", "Kodiernummer Kluse", "Einsteiger Landgericht", "Besetzung Landgericht", "Kodiernummer Landgericht", "Einsteiger Völklinger Straße", "Besetzung Völklinger Straße", "Kodiernummer Völklinger Straße", "Einsteiger Loher Brücke", "Besetzung Loher Brücke", "Kodiernummer Loher Brücke", "Einsteiger Adlerbrücke", "Besetzung Adlerbrücke", "Kodiernummer Adlerbrücke", "Einsteiger Alter Markt", "Besetzung Alter Markt", "Kodiernummer Alter Markt", "Einsteiger Werther Brücke", "Besetzung Werther Brücke", "Kodiernummer Werther Brücke", 
+        #        "Einsteiger Wupperfeld", "Besetzung Wupperfeld", "Kodiernummer Wupperfeld", "Erhebungsausfall", "Unregelmäßigkeiten"]
+        # print(pd.array(head))
+        endhaltestelle = datei.pop(-1)
+        # beginnendehalt = datei.pop(0)
+        header = ["Seriennummer", "IV_Nr", "IST-Zeit Abfahrtsort", "IST-Zeit Ankunftsort",]
+        end = len(datei)
+        erg = [seriennummer, ivnummer, eintrag[0][0], eintrag[end][0]]
+        for idx, h in enumerate(datei):
+            if idx == 0:
+                erg.append(eintrag[idx][2])
+                header.append("Besetzung")
+                header.append("Kodiernummer")
+            else:
+                erg.append(eintrag[idx][1])
+                erg.append(eintrag[idx][2])
+                header.append("Einsteiger")
+                header.append("Besetzung")
+                header.append("Kodiernummer")
+            h = h.split(';')
+            h = h[1].strip("\n").strip(";")
+            erg.append(h)
+            
+        erg.append("Nein")
+        erg.append(unregel)
+        header.append("Erhebungsausfall")
+        header.append("Unregelmäßigkeiten")
+        print(erg)
+        return (header, erg)
+    
+    def zusammen_pp(self, datei, eintrag, line, seriennummer, ivnummer, unregel):
         erg = []
         # head = ["Linie", "Seriennr.", "IV-Nummer", "Haltestelle", "Uhrzeit", "Einsteiger", "Besetzung", "Unregelmäßigkeit"]
         for idx, h in enumerate(datei):
             h = h.split(';')
             h = h[1].strip("\n").strip(";")
-            t = eintrag[idx][0]
-            t = t.split(',')
-            if int(t[0]) < 10:
-                t[0] = '0' + str(t[0].strip(' '))
-            if int(t[1]) < 10:
-                t[1] = '0' + str(t[1].strip(' '))
-            time = t[0] + ":" + t[1]
-            erg.append((line, seriennummer, ivnummer, h, time.strip(' '), eintrag[idx][1], eintrag[idx][2], unregel))
-            print(erg)
+            erg.append((line, seriennummer, ivnummer, h, eintrag[idx][0], eintrag[idx][1], eintrag[idx][2], unregel))
         return erg
-        
             
     def notwendigebeschriftung(self, MainWindow):
         MainWindow.setWindowTitle("MainWindow")
